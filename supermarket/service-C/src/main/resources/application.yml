@@ -1,0 +1,11 @@
+server:
+  port: 9530
+spring:
+  application:
+    name: service-CC
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9527/eureka

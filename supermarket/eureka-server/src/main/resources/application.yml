@@ -1,0 +1,12 @@
+server:
+  port: 9527
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+  server:
+    enable-self-preservation: false
+#    serviceUrl:
+#      defaultZone: https://localhost:9527/eureka

@@ -1,0 +1,31 @@
+server:
+  port: 9547
+spring:
+  application:
+    name: user-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.100.245.161:3306/onlineSupermarket?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT
+    username: onlineSupermarket
+    password: online
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  redis:
+    host: 47.100.245.161
+    port: 6379
+
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9527/eureka

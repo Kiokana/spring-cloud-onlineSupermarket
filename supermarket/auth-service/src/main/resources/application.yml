@@ -1,0 +1,14 @@
+server:
+  port: 9700
+spring:
+  application:
+    name: auth-service
+  redis:
+    host: 47.100.245.161
+    port: 6379
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9527/eureka
