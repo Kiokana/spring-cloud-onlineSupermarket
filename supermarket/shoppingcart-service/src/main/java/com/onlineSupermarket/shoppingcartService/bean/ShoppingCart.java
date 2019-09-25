@@ -4,15 +4,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Entity
 public class ShoppingCart {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int uid;
-    private String email;
-    private String password;
-    private String firstName;
-    private String SecondName;
-    private int gender;
+    private int id;
+
+    private int productSKUId;
+
+    /* Number of product for this order */
+    private int number;
+
+    private Date created_time;
 }

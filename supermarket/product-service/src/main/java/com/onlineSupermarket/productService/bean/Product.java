@@ -1,18 +1,25 @@
 package com.onlineSupermarket.productService.bean;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.data.annotation.CreatedDate;
+
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Product{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int uid;
-    private String email;
-    private String password;
-    private String firstName;
-    private String SecondName;
-    private int gender;
+    private int id;
+
+    private String product_name;
+
+    private int brandId;
+
+    private int status;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
+    private Date created_time;
+
+    private Date modified_time;
 }

@@ -1,18 +1,23 @@
 package com.onlineSupermarket.commentService.bean;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int uid;
-    private String email;
-    private String password;
-    private String firstName;
-    private String SecondName;
-    private int gender;
+    private int id;
+
+    private int customerId;
+
+    private int productSKUId;
+
+    private int comment;
+
+    /*1 - 5*/
+    private int star;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date create_time;
 }

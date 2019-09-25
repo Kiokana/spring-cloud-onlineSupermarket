@@ -21,6 +21,9 @@ spring:
     restart:
       enabled: true
       additional-paths: src/main/java
+  security:
+    user:
+      password: 123
 
 
 eureka:

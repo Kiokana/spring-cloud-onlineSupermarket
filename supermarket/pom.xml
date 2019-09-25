@@ -28,6 +28,8 @@
 		<module>inventory-service</module>
 		<module>auth-service</module>
 		<module>zuul-service</module>
+		<module>service-hi</module>
+		<module>swagger-service</module>
 	</modules>
 
 	<properties>
