@@ -1,5 +1,5 @@
 server:
-  port: 9547
+  port: 9548
 spring:
   application:
     name: user-service
@@ -32,3 +32,7 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:9527/eureka
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false

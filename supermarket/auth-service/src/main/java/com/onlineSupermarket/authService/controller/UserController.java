@@ -19,4 +19,9 @@ public class UserController {
         logger.info(">>>>>>>>>>>>>>>>>>>>>>>>");
         return principal;
     }
+
+    @GetMapping("/test")
+    public String test(){
+        return "test";
+    }
 }

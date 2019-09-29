@@ -1,4 +1,4 @@
-package com.onlineSupermarket.user_service.controller;
+package com.onlineSupermarket.productService.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

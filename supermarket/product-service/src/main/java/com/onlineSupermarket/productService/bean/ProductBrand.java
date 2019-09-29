@@ -1,11 +1,15 @@
 package com.onlineSupermarket.productService.bean;
 
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.util.Date;
 
+@Data
 @Entity
+@TableName("ProductBrand")
 public class ProductBrand {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

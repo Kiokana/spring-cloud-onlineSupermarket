@@ -1,12 +1,16 @@
 package com.onlineSupermarket.productService.bean;
 
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.util.Date;
 
+@Data
 @Entity
-public class productSKU {
+@TableName("ProductSKU")
+public class ProductSKU {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -20,6 +24,8 @@ public class productSKU {
     private int productInventory;
 
     private double producePrice;
+
+    private String imgUrl;
 
     private int status;
 

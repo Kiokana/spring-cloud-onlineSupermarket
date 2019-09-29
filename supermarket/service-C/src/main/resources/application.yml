@@ -15,8 +15,10 @@ security:
     resource:
       user-info-uri: http://localhost:9700/users/current
     client:
-      id: tt
+      id: ttt
       client-secret: 123456
       access-token-uri: http://localhost:9700/oauth/token
       grant-type: password, refresh_token
       scope: test
+swagger:
+  base-package: com.onlineSupermarket.serviceC

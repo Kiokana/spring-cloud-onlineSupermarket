@@ -45,8 +45,9 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         String finalSecret = "{bcrypt}" + new BCryptPasswordEncoder().encode("123456");
-
+        System.out.println(finalSecret);
         // 配置两个客户端，一个用于password认证一个用于client认证
+
         clients.inMemory().withClient("tt")
                 .authorizedGrantTypes("password", "refresh_token")
                 .scopes("test")
@@ -76,41 +77,36 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         return converter;
     }
 
-    @Bean
-    public TokenStore tokenStore(){
-        TokenStore tokenStore = new JwtTokenStore(accessTokenConverter());
-        return tokenStore;
-    }
-
 //    @Bean
-//    public RedisTokenStore redisTokenStore(){
-//        RedisTokenStore tokenStore = new RedisTokenStore(redisConnectionFactory);
+//    public TokenStore tokenStore(){
+//        TokenStore tokenStore = new JwtTokenStore(accessTokenConverter());
 //        return tokenStore;
 //    }
 
+    @Bean
+    public RedisTokenStore redisTokenStore(){
+        RedisTokenStore tokenStore = new RedisTokenStore(redisConnectionFactory);
+        return tokenStore;
+    }
 
-    /* Necessary for refresh token */
+
     @Autowired
-    private UserDetailsService userDetailsService;
-
+    private MyUserDetailsService userDetialsService;
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.authenticationManager(authenticationManager)
                 .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST)
-//                .tokenStore(redisTokenStore());
-                .tokenStore(tokenStore())
-                .accessTokenConverter(accessTokenConverter());
-        endpoints.userDetailsService(userDetailsService);
+                .tokenStore(redisTokenStore());
+//                .tokenStore(tokenStore())
+//                .accessTokenConverter(accessTokenConverter());
+        endpoints.userDetailsService(userDetialsService);
     }
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         // 允许表单认证
-        security.allowFormAuthenticationForClients()
-//                .tokenKeyAccess("permitAll()")
-//                .checkTokenAccess("isAuthenticated()")
-        ;
+        security.allowFormAuthenticationForClients();
     }
 
 }

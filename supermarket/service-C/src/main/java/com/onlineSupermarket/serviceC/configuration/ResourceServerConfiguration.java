@@ -19,36 +19,36 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 @EnableResourceServer
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
-    @Override
-    public void configure(ResourceServerSecurityConfigurer config) {
-        config.tokenServices(tokenServices());
-    }
+//    @Override
+//    public void configure(ResourceServerSecurityConfigurer config) {
+//        config.tokenServices(tokenServices());
+//    }
+//
+//    @Autowired
+//    private JwtAccessTokenConverter jwtAccessTokenConverter;
+//
+//    @Bean
+//    @Qualifier("tokenStore")
+//    public TokenStore tokenStore() {
+//        return new JwtTokenStore(jwtAccessTokenConverter);
+//    }
+//
+//    @Bean
+//    protected JwtAccessTokenConverter jwtAccessTokenConverter() {
+//        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+//        converter.setSigningKey("123");
+//        return converter;
+//    }
 
-    @Autowired
-    private JwtAccessTokenConverter jwtAccessTokenConverter;
-
-    @Bean
-    @Qualifier("tokenStore")
-    public TokenStore tokenStore() {
-        return new JwtTokenStore(jwtAccessTokenConverter);
-    }
-
-    @Bean
-    protected JwtAccessTokenConverter jwtAccessTokenConverter() {
-        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        converter.setSigningKey("123");
-        return converter;
-    }
-
-    @Bean
-//    @Primary
-    public DefaultTokenServices tokenServices() {
-        DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
-        defaultTokenServices.setTokenStore(tokenStore());
-        return defaultTokenServices;
-    }
-
-
+//    @Bean
+////    @Primary
+//    public DefaultTokenServices tokenServices() {
+//        DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
+//        defaultTokenServices.setTokenStore(tokenStore());
+//        return defaultTokenServices;
+//    }
+//
+//
 
     @Override
     public void configure(HttpSecurity http) throws Exception {

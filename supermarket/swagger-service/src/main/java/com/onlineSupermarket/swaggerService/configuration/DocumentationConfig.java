@@ -4,6 +4,7 @@ import com.netflix.discovery.DiscoveryClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.netflix.zuul.filters.RouteLocator;
+import org.springframework.cloud.netflix.zuul.filters.ZuulProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
@@ -30,11 +31,12 @@ public class DocumentationConfig implements SwaggerResourcesProvider {
     Boolean swaggerEnabled;
 
     @Autowired
-    RouteLocator routeLocator;
+    ZuulProperties properties;
 
     @Bean
     public Docket createRestApi() {
-        return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo())
+        return new Docket(DocumentationType.SWAGGER_2)
+                .apiInfo(apiInfo())
                 .enable(swaggerEnabled).select()
                 .apis(RequestHandlerSelectors.basePackage("com.onlineSupermarket.swaggerService"))
                 .paths(PathSelectors.any()).build().pathMapping("/");
@@ -54,7 +56,16 @@ public class DocumentationConfig implements SwaggerResourcesProvider {
     @Override
     public List<SwaggerResource> get(){
         List resources = new ArrayList<>();
+        properties.getRoutes().values().stream()
+                .forEach(route ->
+                        System.out.println(route.getServiceId().toString()+" "+route.getPath()));
+
+
         resources.add(swaggerResource("swagger-gateway", "/v2/api-docs","1.0"));
+
+        properties.getRoutes().values().stream()
+                .forEach(route -> resources
+                .add(swaggerResource(route.getServiceId(), route.getPath().replace("**", "v2/api-docs"), "1.0")));
 
 
         return resources;

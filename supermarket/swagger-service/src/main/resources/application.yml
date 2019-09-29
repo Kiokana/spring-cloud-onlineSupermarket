@@ -11,3 +11,9 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:9527/eureka
+zuul:
+  routes:
+    service-C:
+      service-id: service-C
+      path: /service-C/**
+  strip-prefix: true
